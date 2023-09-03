@@ -1,0 +1,18 @@
+17
+MANTEIGA, DAVACA, 114, 23.90, 5
+PAO DE FORMA, LIMIAR, 115, 7.53, 15
+Item excluído pelo usuário., 0, 0, 0, 0
+BROA, MARCA DE BROA, 116, 2.00, 4
+BISCOITO, FORTALEZA, 117, 6.50, 5
+Item excluído pelo usuário., 0, 0, 0, 0
+Item excluído pelo usuário., 0, 0, 0, 0
+CHOCOLATE EM PO, NESTLE, 119, 7.63, 4
+CAFE EM PO, TRES CORACOES, 120, 6.00, 1
+Item excluído pelo usuário., 0, 0, 0, 0
+QUEIJO MUSSARELA, QUEROQUEIJO, 122, 20.10, 2
+Item excluído pelo usuário., 0, 0, 0, 0
+EXTRATO DE TOMATE, QUERO, 123, 3.90, 6
+BOLO, DONA BENTA, 124, 12.12, 3
+FARINHA NORMAL, AFARINHA, 125, 3.50, 2
+Item excluído pelo usuário., 0, 0, 0, 0
+Item excluído pelo usuário., 0, 0, 0, 0
