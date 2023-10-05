@@ -3,12 +3,11 @@
 #include <string.h>
 #include <ctype.h>
 
-//criando a struct para variável de tipo produto 
 struct produto{
   char nome[30], codigo[15], preco[10], quant[5], marca[30];
 };
 
-struct produto *dados; //criando o ponteiro
+struct produto *dados; 
 char maisum = 's';
 int cont = 0, opcao; 
 
@@ -21,7 +20,7 @@ int mostrar_menu(void){
   while(opcao < 1 || opcao > 5){
     printf("NÚMERO INVÁLIDO. Tente novamento digitando os números correspondentes às opções do menu. (1 a 5).\n");
     scanf("%d", &opcao);
-    break; //caso o user digite algo diferente de um número, sem o brek tava dando um loop infinito
+    break; 
   }
   return opcao;
 }
@@ -42,9 +41,9 @@ void imprimir(void){
     printf("----------------------------------------------------------------------------------\n");
   
     for(int ind = 0; ind < cont; ind++){
-      //se o item for apagado, a impressão (estética) muda, só para ficar diferente no arquivo gerado e na interface de interação
-      //no arquivo, cada item do produto deve apresentar a string: "item excluído pelo usuário"
-      //na interface, por ser em modelo de tabela, só o primeiro item (nome) apresenta a string e o resto tem um e spaço em branco
+      /*se o item for apagado, a impressão (estética) muda, só para ficar diferente no arquivo gerado e na interface de interação
+      no arquivo, cada item do produto deve apresentar a string: "item excluído pelo usuário"
+      na interface, por ser em modelo de tabela, só o primeiro item (nome) apresenta a string e o resto tem um e spaço em branco*/
       
       if((strcmp(dados[ind].nome, "Item excluído pelo usuário.") == 0)){ 
         printf("| %-4d | %-15s |\n", ind + 1, dados[ind].nome); 
