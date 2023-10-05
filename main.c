@@ -50,14 +50,14 @@ void imprimir(void){
         printf("| %-4d | %-15s |\n", ind + 1, dados[ind].nome); 
       }
         
-      else{ //se p produto não foi excluído, a impressão é normal*/
+      else{
         printf("| %-4d | %-15s | %-13s | %-8s | %-8s | %-4s |\n", ind + 1, dados[ind].nome, dados[ind].marca, dados[ind].codigo, dados[ind].preco, dados[ind].quant); 
       }  
       printf("--------------------------------------------------------------------------------\n");
     }
     printf("----------------------------------------------------------------------------------\n");
     
-    /*Esses % -Xs são especificadores de formato p definir uma largura fixa de X caracteres para os diferentes campos, ent eles podem ficar alinhados corretamente no printf*/
+    //% -Xs: especificadores de formato p definir uma largura fixa de X caracteres 
   }
     
   else{
@@ -67,7 +67,7 @@ void imprimir(void){
 
 void incluir(void){
    printf("\nApós checar os produtos já registrados na padaria na tabela abaixo, insira: o nome, a marca, o código, o preço e a quantidade do produto.\n\n");
-   if(cont > 1){ //para o primeiro item a ser incluído, a tabela dos outros já existentes não precisa ser impressa
+   if(cont > 1){ 
      printf("Segue a lista:\n");
   imprimir();//imprimindo antes o que já tem para evitar repetição
    }
@@ -78,12 +78,12 @@ void incluir(void){
     
     for(int m = 0; m < strlen(dados[cont].nome); m++){ 
       dados[cont].nome[m] = toupper(dados[cont].nome[m]); 
-    }//deixando em letra maiúscula
-  
+    }
+     
     printf("Marca: ");
     scanf(" %[^\n]", dados[cont].marca); 
     for(int n = 0; n < strlen(dados[cont].marca); n++){ 
-      dados[cont].marca[n] = toupper(dados[cont].marca[n]); //deixando em letra maiúscula 
+      dados[cont].marca[n] = toupper(dados[cont].marca[n]); 
     }
       
     printf("Código: ");
@@ -95,7 +95,7 @@ void incluir(void){
     printf("Quantidade: ");
     scanf("%s", dados[cont].quant); 
       
-    cont++; //vai contar quantos produtos serão registrados
+    cont++; 
     
     
     break;
@@ -105,9 +105,9 @@ void incluir(void){
 void novo_prod(void){ //o produto que a pessoa digitou não foi identificado no banco e a função ver se a pessoa quer adicionar
   char novo;
   printf("\nInfelizmente, esse produto não se encontra no banco de registros da padaria. Deseja inseri-lo no estoque? (s/n)\n");
-  getchar(); //consome o caractere de quebra de linha pendente
+  getchar(); 
   scanf(" %c", &novo);
-  if(novo == 's' || novo == 'S'){ //ver se quer inserir o produto q n existe
+  if(novo == 's' || novo == 'S'){ 
     incluir();
   }
   else{
@@ -123,11 +123,11 @@ int consultar(){
     printf("Você não precisa digitar acentos gráficos como: ` ou ´ ou ~ ou ^ ou ç.\n");
     scanf(" %[^\n]", qual_prod);
     for(int p = 0; p < strlen(qual_prod); p++){
-      qual_prod[p] = toupper(qual_prod[p]); //deixando em letra maiúscula
+      qual_prod[p] = toupper(qual_prod[p]); 
     }
     for(i = 0; i < cont; i++){
-      if(strcmp(qual_prod, dados[i].nome) == 0){ //ta igual, logo existe
-        index = i; //guardando o valor do índice
+      if(strcmp(qual_prod, dados[i].nome) == 0){ 
+        index = i; 
         retorno = 'v';
         printf("\nOs dados do(a) %s são:\n", qual_prod);
         printf("Nome: %s\n", dados[i].nome);
@@ -153,14 +153,14 @@ int consultar(){
       return index; //o índice do registro em questão para que não se perca na função alterar
       break;
     case 'f':
-      return -1; //p a função alterar saber que o prod n existe e n fazer a operação errada
+      return -1; //função alterar sabe que o prod n existe 
       break;
     default:
       return 0;
   }
 }
 
-//FUNÇÃO DE ALTERAR - conjugada com os dados alterados 
+
 void dados_alterados(int p_alteracao, int p_existe){
   printf("Lembrete: você não precisa digitar acentos gráficos como: ` ou ´ ou ~ ou ^ ou ç.\n");
   switch(p_alteracao){
@@ -243,10 +243,8 @@ void excluir(void){
 } 
 
 int main(void) {
-  //alocando memoria p a struct
-  dados = (struct produto *)malloc(sizeof(struct produto)); 
-  
-  //lendo o arquivo
+  dados = (struct produto *)malloc(sizeof(struct produto)); //alocando memoria p a struct
+
     FILE *arquivo;
     arquivo = fopen("Registros.txt", "r");
   
@@ -262,19 +260,16 @@ int main(void) {
    else{
     printf("Não foi possível ler o arquivo.\n");
    }
-      
-  
-  //tela inicial e seleção da operação
+   
   printf("            ------------------------------------------------\n");
   printf("            ---------Bem-vindo(a) à Padaria L.P. 1!!!!------\n");
   printf("            ------------------------------------------------\n\n");
   printf("Aqui você encontra o menu para registro de novos produtos, navegue pelas opções de incluir, consultar, alterar, imprimir e excluir. Após executar o que deseja, verifique o arquivo ""Registros.txt"", que contém a quantidade de produtos registrados e os dados dos mesmos. O arquivo também poderá ser recarregado quando você voltar nesta página se quiser fazer qualquer tipo de edição nos registros.\n\n");
   
   while(maisum == 's' || maisum == 'S'){
-    mostrar_menu(); //vai retornar a operação escolhida
+    mostrar_menu(); 
     system("clear"); 
     
-    //chamando as funções de acordo com o que o usuário quer fazer
     switch(opcao){
       case 1:
         incluir();
@@ -282,7 +277,7 @@ int main(void) {
         break;
       case 2:
         consultar();
-        dados = (struct produto *)realloc(dados, (cont + 1) * sizeof(struct produto)); //a função consultar chama a função incluir em um certo momento, logo precisa do seu realloc
+        dados = (struct produto *)realloc(dados, (cont + 1) * sizeof(struct produto)); //chama a função incluir 
         break;
       case 3:
         alterar();
@@ -292,11 +287,11 @@ int main(void) {
         break;
       case 5:
         excluir();
-        dados = (struct produto *)realloc(dados, (cont + 1) * sizeof(struct produto)); //a função excluir chama a função incluir em um certo momento, logo precisa do seu realloc
+        dados = (struct produto *)realloc(dados, (cont + 1) * sizeof(struct produto)); //chama a função incluir 
         break;
     }
     
-  continuar_operando(); //vai retornar s ou n
+  continuar_operando(); 
     if(maisum == 'n' || maisum == 'N'){
       
       arquivo = fopen("Registros.txt", "w");
@@ -306,8 +301,8 @@ int main(void) {
       }
         
       else{
-        fprintf(arquivo, "%d\n", cont); //a quatidade totral de registros
-        for(int j = 0; j < cont; j++){ //for para controlar os produtos registrados
+        fprintf(arquivo, "%d\n", cont); 
+        for(int j = 0; j < cont; j++){ 
           fprintf(arquivo, "%s, %s, %s, %s, %s\n", dados[j].nome, dados[j].marca, dados[j].codigo, dados[j].preco, dados[j].quant); 
         }  
       }
